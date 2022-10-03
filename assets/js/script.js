@@ -1,10 +1,11 @@
 var quizStartBtn = document.querySelector("#quiz-start-btn");
+var questionLocation = document.querySelector("#question");
 
 //all question contents stored here
 var quizContents = [
     {
-        question: "Commonly used data types do NOT include:"
-        answer: "booleans"
+        question: "Commonly used data types do NOT include:",
+        answer: "booleans",
         options: [
             "strings",
             "booleans",
@@ -13,43 +14,43 @@ var quizContents = [
             ]
     },
     {
-        question: "Commonly used data types do NOT include:"
-        answer: "booleans"
+        question: "The condition in an if / else statement is enclosed within::",
+        answer: "curly brackets",
         options: [
-            "strings",
-            "booleans",
-            "alerts",
-            "numbers"
+            "quotes",
+            "parantheses",
+            "curly brackets",
+            "square brackets"
             ]
     },
     {
-        question: "Commonly used data types do NOT include:"
-        answer: "booleans"
+        question: "Arrays in JavaScript can be used to store:",
+        answer: "all of the above",
         options: [
+            "numbers",
             "strings",
-            "booleans",
-            "alerts",
-            "numbers"
+            "other arrays",
+            "all of the above"
             ]
     },
     {
-        question: "Commonly used data types do NOT include:"
-        answer: "booleans"
+        question: "When being assigned to variables, string values must be enclosed with:",
+        answer: "quotes",
         options: [
-            "strings",
-            "booleans",
-            "alerts",
-            "numbers"
+            "commas",
+            "curly brackets",
+            "quotes",
+            "parantheses"
             ]
     },
     {
-        question: "Commonly used data types do NOT include:"
-        answer: "booleans"
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answer: "console.log",
         options: [
-            "strings",
-            "booleans",
-            "alerts",
-            "numbers"
+            "console.log",
+            "for loops",
+            ".gitignore",
+            "JavaScript"
             ]
     }
 ];
