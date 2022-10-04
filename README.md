@@ -14,7 +14,7 @@ This webpage utilizes the power of JavaScript to test the user on some of their 
 
 ## Screenshot
 
-![website](./images/screenshot.png)
+![website](./assets/images/screenshot.png)
 
 ## Credits
 
