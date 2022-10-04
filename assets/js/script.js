@@ -7,7 +7,10 @@ var answerTwo = document.querySelector("#answer-two");
 var answerThree = document.querySelector("#answer-three");
 var answerFour = document.querySelector("#answer-four");
 var answerCheck = document.querySelector("#answer-check");
-var nameForm = document.createElement("form");
+var generateForm = document.querySelector("#form");
+var nameInput = document.querySelector("#name-input");
+var submitName = document.querySelector("#submit");
+var userScore = document.querySelector("#score");
 
 //all question contents stored here
 var quizContents = [
@@ -22,7 +25,7 @@ var quizContents = [
         }
     },
     {
-        question: "The condition in an if / else statement is enclosed within::",
+        question: "The condition in an if / else statement is enclosed within:",
         answer: "3. curly brackets",
         options: {
             a1: "1. quotes",
@@ -66,12 +69,12 @@ var quizContents = [
 var secondsLeft = 75; //start quiz with 75 seconds
 var timeInterval;
 
-var wins = localStorage.getItem("wins");
-var losses = localStorage.getItem("losses");
+var score = localStorage.getItem("score");
 
 //countdown active while playing, lose 15 seconds on wrong answer
 function quizStart() {
     quizStartBtn.disabled = true; //disables start quiz button while quiz is active
+    questionLocation.classList.remove("hidden");
     secondsLeft = 75;
 
     timeRemaining.textContent = "Seconds left: " + secondsLeft;
@@ -80,10 +83,6 @@ function quizStart() {
 
     timeInterval = setInterval(function () {
         secondsLeft--;
-        if (answerCheck.textContent = "Wrong!") {
-            secondsLeft -= 15;
-            timeRemaining.textContent = "Seconds left: " + secondsLeft;
-        }
         if (secondsLeft >= 1) {
             timeRemaining.textContent = "Seconds left: " + secondsLeft;
         } else {
@@ -97,6 +96,7 @@ function quizStart() {
 }
 
 function generateQuestionOne() {
+
     question.textContent = quizContents[0].question;
     answerOne.textContent = quizContents[0].options.a1;
     answerTwo.textContent = quizContents[0].options.a2; //correct
@@ -207,6 +207,11 @@ function generateQuestionFiveCorrect() {
     answerTwo.textContent = quizContents[4].options.a2;
     answerThree.textContent = quizContents[4].options.a3;
     answerFour.textContent = quizContents[4].options.a4;
+
+    answerOne.addEventListener("click", endGameCorrect);
+    answerTwo.addEventListener("click", endGameWrong);
+    answerThree.addEventListener("click", endGameWrong);
+    answerFour.addEventListener("click", endGameWrong);
 }
 
 function generateQuestionFiveWrong() {
@@ -217,7 +222,30 @@ function generateQuestionFiveWrong() {
     answerTwo.textContent = quizContents[4].options.a2;
     answerThree.textContent = quizContents[4].options.a3;
     answerFour.textContent = quizContents[4].options.a4;
+
+    answerOne.addEventListener("click", endGameCorrect);
+    answerTwo.addEventListener("click", endGameWrong);
+    answerThree.addEventListener("click", endGameWrong);
+    answerFour.addEventListener("click", endGameWrong);
+}
+
+function endGameCorrect() {
+    answerCheck.textContent = "Correct!";
+    clearInterval(timeInterval);
+    generateForm.classList.remove("hidden");
+    var response = nameInput.value + ": " + secondsLeft + " seconds remaining"
+    userScore.textContent = response;
+}
+
+function endGameWrong() {
+    answerCheck.textContent = "Wrong!";
+    clearInterval(timeInterval);
+    generateForm.classList.remove("hidden");
+    var response = nameInput.value + ": " + secondsLeft + " seconds remaining"
+    userScore.textContent = response;
 }
 
 //upon clicking start quiz button, the quiz begins
 quizStartBtn.addEventListener("click", quizStart);
+submitName.addEventListener("click", endGameCorrect);
+submitName.addEventListener("click", endGameCorrect);

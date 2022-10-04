@@ -17,8 +17,8 @@
     </header>
 
     <main>
-        <button id="quiz-start-btn" class="btn">Start Quiz!</button>
-        <section id="question-location">
+        <button id="quiz-start-btn">Start Quiz!</button>
+        <section id="question-location"  class="hidden">
             <p id="time-remaining"></p>
             <p id="question"></p>
             <button id="answer-one"></button>
@@ -27,11 +27,10 @@
             <button id="answer-four"></button>
             <p id="answer-check"></p>
         </section>
-        <form>
-            <input placeholder="name" id="input-name" />
+        <form id="form" class="hidden">
+            <input placeholder="name" id="name-input" />
             <button id="submit">Submit!</button>
-            <p id="name"></p>
-            <button id="reset-scores" class="hidden">Reset Scores</button>
+            <p id="score"></p>
         </form>
     </main>
     
