@@ -62,22 +62,13 @@ var quizContents = [
     }
 ];
 
-var correct = "Correct!";
-var incorrect = "Wrong!";
+var secondsLeft = 75; //start quiz with 75 seconds
 
 //countdown active while playing, lose 15 seconds on wrong answer
 function quizStart() {
-    var secondsLeft = 75; //start quiz with 120 seconds
 
     generateQuestionOne();
-    //sets up question and answers from quizContents array
-    /*for (var i = 0; i < quizContents.length; i++) {
-        question.textContent = quizContents[i].question;
-        answerOne.textContent = quizContents[i].options.a1;
-        answerTwo.textContent = quizContents[i].options.a2;
-        answerThree.textContent = quizContents[i].options.a3;
-        answerFour.textContent = quizContents[i].options.a4;
-    }*/
+    
     
 
 }
@@ -90,49 +81,129 @@ function generateQuestionOne() {
     answerFour.textContent = quizContents[0].options.a4;
     
     answerTwo.addEventListener("click", generateQuestionTwoCorrect);
+    answerOne.addEventListener("click", generateQuestionTwoWrong);
+    answerThree.addEventListener("click", generateQuestionTwoWrong);
+    answerFour.addEventListener("click", generateQuestionTwoWrong);
 }
 
 function generateQuestionTwoCorrect() {
+    answerCheck.textContent = "Correct!";
+
     question.textContent = quizContents[1].question;
     answerOne.textContent = quizContents[1].options.a1;
     answerTwo.textContent = quizContents[1].options.a2;
     answerThree.textContent = quizContents[1].options.a3; //correct
     answerFour.textContent = quizContents[1].options.a4;
+
+    answerThree.addEventListener("click", generateQuestionThreeCorrect);
+    answerOne.addEventListener("click", generateQuestionThreeWrong);
+    answerTwo.addEventListener("click", generateQuestionThreeWrong);
+    answerFour.addEventListener("click", generateQuestionThreeWrong);
 }
 
-function generateQuestionThree() {
+function generateQuestionTwoWrong() {
+    secondsLeft -= 15;
+    answerCheck.textContent = "Wrong!";
+
+    question.textContent = quizContents[1].question;
+    answerOne.textContent = quizContents[1].options.a1;
+    answerTwo.textContent = quizContents[1].options.a2;
+    answerThree.textContent = quizContents[1].options.a3; //correct
+    answerFour.textContent = quizContents[1].options.a4;
+
+    answerThree.addEventListener("click", generateQuestionThreeCorrect);
+    answerOne.addEventListener("click", generateQuestionThreeWrong);
+    answerTwo.addEventListener("click", generateQuestionThreeWrong);
+    answerFour.addEventListener("click", generateQuestionThreeWrong);
+}
+
+function generateQuestionThreeCorrect() {
+    answerCheck.textContent = "Correct!";
+
     question.textContent = quizContents[2].question;
     answerOne.textContent = quizContents[2].options.a1;
     answerTwo.textContent = quizContents[2].options.a2;
     answerThree.textContent = quizContents[2].options.a3;
     answerFour.textContent = quizContents[2].options.a4; //correct
+
+    answerFour.addEventListener("click", generateQuestionFourCorrect);
+    answerOne.addEventListener("click", generateQuestionFourWrong);
+    answerTwo.addEventListener("click", generateQuestionFourWrong);
+    answerThree.addEventListener("click", generateQuestionFourWrong);
 }
 
-function generateQuestionFour() {
+function generateQuestionThreeWrong() {
+    secondsLeft -= 15;
+    answerCheck.textContent = "Wrong!";
+
+    question.textContent = quizContents[2].question;
+    answerOne.textContent = quizContents[2].options.a1;
+    answerTwo.textContent = quizContents[2].options.a2;
+    answerThree.textContent = quizContents[2].options.a3;
+    answerFour.textContent = quizContents[2].options.a4; //correct
+
+    answerFour.addEventListener("click", generateQuestionFourCorrect);
+    answerOne.addEventListener("click", generateQuestionFourWrong);
+    answerTwo.addEventListener("click", generateQuestionFourWrong);
+    answerThree.addEventListener("click", generateQuestionFourWrong);
+}
+
+function generateQuestionFourCorrect() {
+    answerCheck.textContent = "Correct!";
+
     question.textContent = quizContents[3].question;
     answerOne.textContent = quizContents[3].options.a1;
     answerTwo.textContent = quizContents[3].options.a2;
     answerThree.textContent = quizContents[3].options.a3; //correct
     answerFour.textContent = quizContents[3].options.a4;
+
+    answerThree.addEventListener("click", generateQuestionFiveCorrect);
+    answerOne.addEventListener("click", generateQuestionFiveWrong);
+    answerTwo.addEventListener("click", generateQuestionFiveWrong);
+    answerFour.addEventListener("click", generateQuestionFiveWrong);
 }
 
-function generateQuestionFive() {
+function generateQuestionFourWrong() {
+    secondsLeft -= 15;
+    answerCheck.textContent = "Wrong!";
+
+    question.textContent = quizContents[3].question;
+    answerOne.textContent = quizContents[3].options.a1;
+    answerTwo.textContent = quizContents[3].options.a2;
+    answerThree.textContent = quizContents[3].options.a3; //correct
+    answerFour.textContent = quizContents[3].options.a4;
+
+    answerThree.addEventListener("click", generateQuestionFiveCorrect);
+    answerOne.addEventListener("click", generateQuestionFiveWrong);
+    answerTwo.addEventListener("click", generateQuestionFiveWrong);
+    answerFour.addEventListener("click", generateQuestionFiveWrong);
+}
+
+function generateQuestionFiveCorrect() {
+    answerCheck.textContent = "Correct!";
+
     question.textContent = quizContents[4].question;
     answerOne.textContent = quizContents[4].options.a1; //correct
     answerTwo.textContent = quizContents[4].options.a2;
     answerThree.textContent = quizContents[4].options.a3;
     answerFour.textContent = quizContents[4].options.a4;
+
+    answerTwo.addEventListener("click", generateQuestionTwoCorrect);
+    answerOne.addEventListener("click", generateQuestionTwoWrong);
+    answerThree.addEventListener("click", generateQuestionTwoWrong);
+    answerFour.addEventListener("click", generateQuestionTwoWrong);
 }
 
-function correct() {
-    answerCheck.textContent = "Correct!";
-    generateQuestionTwo();
-}
-
-function penalty() {
+function generateQuestionFiveWrong() {
     secondsLeft -= 15;
     answerCheck.textContent = "Wrong!";
-    generateQuestionTwo();
+
+    question.textContent = quizContents[4].question;
+    answerOne.textContent = quizContents[4].options.a1; //correct
+    answerTwo.textContent = quizContents[4].options.a2;
+    answerThree.textContent = quizContents[4].options.a3;
+    answerFour.textContent = quizContents[4].options.a4;
+
 }
 
 //upon clicking start quiz button, the quiz begins
