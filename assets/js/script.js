@@ -66,6 +66,9 @@ var quizContents = [
 var secondsLeft = 75; //start quiz with 75 seconds
 var timeInterval;
 
+var wins = localStorage.getItem("wins");
+var losses = localStorage.getItem("losses");
+
 //countdown active while playing, lose 15 seconds on wrong answer
 function quizStart() {
     quizStartBtn.disabled = true; //disables start quiz button while quiz is active
@@ -77,10 +80,14 @@ function quizStart() {
 
     timeInterval = setInterval(function () {
         secondsLeft--;
+        if (answerCheck.textContent = "Wrong!") {
+            secondsLeft -= 15;
+            timeRemaining.textContent = "Seconds left: " + secondsLeft;
+        }
         if (secondsLeft >= 1) {
             timeRemaining.textContent = "Seconds left: " + secondsLeft;
         } else {
-            timeRemaining.textContent = "Out of time!";
+            timeRemaining.textContent = "Seconds left: 0. Try again!";
             clearInterval(timeInterval);
         }
     }, 1000);
@@ -118,7 +125,6 @@ function generateQuestionTwoCorrect() {
 }
 
 function generateQuestionTwoWrong() {
-    secondsLeft -= 15;
     answerCheck.textContent = "Wrong!";
 
     question.textContent = quizContents[1].question;
@@ -149,7 +155,6 @@ function generateQuestionThreeCorrect() {
 }
 
 function generateQuestionThreeWrong() {
-    secondsLeft -= 15;
     answerCheck.textContent = "Wrong!";
 
     question.textContent = quizContents[2].question;
@@ -180,7 +185,6 @@ function generateQuestionFourCorrect() {
 }
 
 function generateQuestionFourWrong() {
-    secondsLeft -= 15;
     answerCheck.textContent = "Wrong!";
 
     question.textContent = quizContents[3].question;
@@ -203,11 +207,9 @@ function generateQuestionFiveCorrect() {
     answerTwo.textContent = quizContents[4].options.a2;
     answerThree.textContent = quizContents[4].options.a3;
     answerFour.textContent = quizContents[4].options.a4;
-
 }
 
 function generateQuestionFiveWrong() {
-    secondsLeft -= 15;
     answerCheck.textContent = "Wrong!";
 
     question.textContent = quizContents[4].question;
@@ -215,7 +217,6 @@ function generateQuestionFiveWrong() {
     answerTwo.textContent = quizContents[4].options.a2;
     answerThree.textContent = quizContents[4].options.a3;
     answerFour.textContent = quizContents[4].options.a4;
-
 }
 
 //upon clicking start quiz button, the quiz begins
