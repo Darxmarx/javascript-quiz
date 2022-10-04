@@ -1,5 +1,6 @@
 var quizStartBtn = document.querySelector("#quiz-start-btn");
 var questionLocation = document.querySelector("#question-location");
+var timeRemaining = document.querySelector("#time-remaining");
 var question = document.querySelector("#question");
 var answerOne = document.querySelector("#answer-one");
 var answerTwo = document.querySelector("#answer-two");
@@ -63,11 +64,26 @@ var quizContents = [
 ];
 
 var secondsLeft = 75; //start quiz with 75 seconds
+var timeInterval;
 
 //countdown active while playing, lose 15 seconds on wrong answer
 function quizStart() {
+    quizStartBtn.disabled = true; //disables start quiz button while quiz is active
+    secondsLeft = 75;
+
+    timeRemaining.textContent = "Seconds left: " + secondsLeft;
 
     generateQuestionOne();
+
+    timeInterval = setInterval(function () {
+        secondsLeft--;
+        if (secondsLeft >= 1) {
+            timeRemaining.textContent = "Seconds left: " + secondsLeft;
+        } else {
+            timeRemaining.textContent = "Out of time!";
+            clearInterval(timeInterval);
+        }
+    }, 1000);
     
     
 
@@ -188,10 +204,6 @@ function generateQuestionFiveCorrect() {
     answerThree.textContent = quizContents[4].options.a3;
     answerFour.textContent = quizContents[4].options.a4;
 
-    answerTwo.addEventListener("click", generateQuestionTwoCorrect);
-    answerOne.addEventListener("click", generateQuestionTwoWrong);
-    answerThree.addEventListener("click", generateQuestionTwoWrong);
-    answerFour.addEventListener("click", generateQuestionTwoWrong);
 }
 
 function generateQuestionFiveWrong() {
