@@ -62,16 +62,77 @@ var quizContents = [
     }
 ];
 
+var correct = "Correct!";
+var incorrect = "Wrong!";
+
 //countdown active while playing, lose 15 seconds on wrong answer
 function quizStart() {
     var secondsLeft = 75; //start quiz with 120 seconds
 
-    question.textContent = quizContents.question;
+    generateQuestionOne();
+    //sets up question and answers from quizContents array
+    /*for (var i = 0; i < quizContents.length; i++) {
+        question.textContent = quizContents[i].question;
+        answerOne.textContent = quizContents[i].options.a1;
+        answerTwo.textContent = quizContents[i].options.a2;
+        answerThree.textContent = quizContents[i].options.a3;
+        answerFour.textContent = quizContents[i].options.a4;
+    }*/
+    
+
+}
+
+function generateQuestionOne() {
+    question.textContent = quizContents[0].question;
     answerOne.textContent = quizContents[0].options.a1;
-    answerTwo.textContent = quizContents[0].options.a2;
+    answerTwo.textContent = quizContents[0].options.a2; //correct
     answerThree.textContent = quizContents[0].options.a3;
     answerFour.textContent = quizContents[0].options.a4;
+    
+    answerTwo.addEventListener("click", generateQuestionTwoCorrect);
+}
 
+function generateQuestionTwoCorrect() {
+    question.textContent = quizContents[1].question;
+    answerOne.textContent = quizContents[1].options.a1;
+    answerTwo.textContent = quizContents[1].options.a2;
+    answerThree.textContent = quizContents[1].options.a3; //correct
+    answerFour.textContent = quizContents[1].options.a4;
+}
+
+function generateQuestionThree() {
+    question.textContent = quizContents[2].question;
+    answerOne.textContent = quizContents[2].options.a1;
+    answerTwo.textContent = quizContents[2].options.a2;
+    answerThree.textContent = quizContents[2].options.a3;
+    answerFour.textContent = quizContents[2].options.a4; //correct
+}
+
+function generateQuestionFour() {
+    question.textContent = quizContents[3].question;
+    answerOne.textContent = quizContents[3].options.a1;
+    answerTwo.textContent = quizContents[3].options.a2;
+    answerThree.textContent = quizContents[3].options.a3; //correct
+    answerFour.textContent = quizContents[3].options.a4;
+}
+
+function generateQuestionFive() {
+    question.textContent = quizContents[4].question;
+    answerOne.textContent = quizContents[4].options.a1; //correct
+    answerTwo.textContent = quizContents[4].options.a2;
+    answerThree.textContent = quizContents[4].options.a3;
+    answerFour.textContent = quizContents[4].options.a4;
+}
+
+function correct() {
+    answerCheck.textContent = "Correct!";
+    generateQuestionTwo();
+}
+
+function penalty() {
+    secondsLeft -= 15;
+    answerCheck.textContent = "Wrong!";
+    generateQuestionTwo();
 }
 
 //upon clicking start quiz button, the quiz begins
